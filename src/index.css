@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #9C0053;
+  --font-sans: "PingFang TC", sans-serif;
+  --font-heading: "PingFang TC", sans-serif;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background-color: #F8E7F1;
+}
