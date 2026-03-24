@@ -6,7 +6,7 @@ import {
   SESSION_VALUES,
 } from '@/features/online-meeting-form/constants';
 
-const phonePattern = /^(?=(?:.*\d){8,15}$)[\d+\-\s()]+$/;
+const phonePattern = /^09\d{8}$/;
 
 const addFieldIssue = (
   ctx: z.RefinementCtx,
@@ -14,7 +14,7 @@ const addFieldIssue = (
   message: string,
 ) => {
   ctx.addIssue({
-    code: z.ZodIssueCode.custom,
+    code: 'custom',
     message,
     path: [path],
   });
@@ -35,8 +35,7 @@ export const onlineMeetingSchema = z
       .string()
       .trim()
       .min(1, '請輸入手機號碼')
-      .regex(phonePattern, '手機號碼格式錯誤')
-      .refine((value: string) => value.replace(/[^\d]/g, '').length >= 8, { message: '手機號碼格式錯誤' }),
+      .regex(phonePattern, '手機號碼格式錯誤'),
     industry: z
       .enum(INDUSTRY_VALUES)
       .or(z.literal(''))
